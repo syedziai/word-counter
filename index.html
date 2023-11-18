@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Counter with JavaScript</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Word Counter</h1>
+    <div class="container">
+      <textarea placeholder="Enter Your text here..."></textarea>
+      <div class="output-container">
+        <div class="output">
+          <p class="words">Words</p>
+          <span class="data-word-count">0</span>
+        </div>
+        <div class="output">
+          <p class="characters">characters</p>
+          <span class="data-character-count">0</span>
+        </div>
+        <div class="output">
+          <p class="sentences">sentences</p>
+          <span class="data-sentence-count">0</span>
+        </div>
+        <div class="output">
+          <p class="paragraph">paragraph</p>
+          <span class="data-paragraph-count">0 </span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const input = document.querySelector("textarea");
+      const wordCount = document.querySelector(".data-word-count");
+      const characterCount = document.querySelector(".data-character-count");
+      const sentenceCount = document.querySelector(".data-sentence-count");
+      const paragraphCount = document.querySelector(".data-paragraph-count");
+
+
+      
+      input.addEventListener("input", function () {
+        if (input.value) {
+          //count words
+          const wordsArray = input.value
+            .split(" ")
+            .filter((word) => word !== "");
+          wordCount.textContent = wordsArray.length;
+
+          //count characters
+          characterCount.textContent = input.value.replace(/ /g,"").length;
+          
+          //count sentences
+          const sentence=input.value.split(/[.!?]/);
+          sentenceCount.textContent=sentence.length-1;
+
+          //paragraph count
+          const paragraph=input.value.split("\n").filter((p)=>p.trim()!=="")
+          paragraphCount.textContent=paragraph.length;
+        }
+        else{
+          wordCount.innerHTML= 
+          characterCount.innerHTML= 
+          sentenceCount.innerHTML=  
+          paragraphCount.innerHTML= 0;
+        }
+      });
+    </script>
+  </body>
+</html>
